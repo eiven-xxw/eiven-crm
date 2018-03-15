@@ -3,7 +3,7 @@
 var tab;
 
 layui.config({
-    base: 'js/',
+    base: 'common/js/',
     version: new Date().getTime()
 }).use(['element', 'layer', 'navbar', 'tab'], function () {
     var element = layui.element(),
