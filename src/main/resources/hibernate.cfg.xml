@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="connection.url">jdbc:mysql://localhost:3306/eivencrm</property>
+    <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+      <mapping class="com.eivencrm.entity.SysUserEntity"/>
+    <mapping class="com.sample.SysUser"/>
+    <mapping class="com.eivencrm.entity.SysUser"/>
+      <mapping class="com.eivencrm.entity.SysMenu"/>
+      <mapping class="com.eivencrm.entity.SysOffice"/>
+      <mapping class="com.eivencrm.entity.SysRole"/>
+      <mapping class="com.eivencrm.entity.SysRoleMenu"/>
+      <mapping class="com.eivencrm.entity.SysUserRole"/>
+      <mapping class="com.eivencrm.entity.SysMenuEntity"/>
+      <mapping class="com.eivencrm.entity.SysOfficeEntity"/>
+      <mapping class="com.eivencrm.entity.SysRoleEntity"/>
+      <mapping class="com.eivencrm.entity.SysRoleMenuEntity"/>
+      <mapping class="com.eivencrm.entity.SysUserRoleEntity"/>
+      <!-- <property name="connection.username"/> -->
+    <!-- <property name="connection.password"/> -->
+
+    <!-- DB schema will be updated if needed -->
+    <!-- <property name="hbm2ddl.auto">update</property> -->
+  </session-factory>
+</hibernate-configuration>

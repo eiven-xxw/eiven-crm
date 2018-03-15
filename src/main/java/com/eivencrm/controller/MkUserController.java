@@ -22,19 +22,19 @@ import com.eivencrm.service.MkUserService;
 @RequestMapping("/user")
 public class MkUserController {
 	
-	  /**
+	/*  *//**
      * 日志（slf4j->logback）
-     */
+     *//*
     private static final Logger logger = LoggerFactory.getLogger(MkUserController.class);
 
     @Autowired
     private MkUserService mkUserService;
 	
-    /**
+    *//**
      * 返回text格式数据
      * @param id 主键id
      * @return 用户json字符串
-     */
+     *//*
     @RequestMapping("/getUser/{id}")
     @ResponseBody
     public String getUserById(@PathVariable("id")String id){
@@ -57,6 +57,6 @@ public class MkUserController {
     	map.put("hello","from TemplateController.helloFtl");  
     	map.put("title","Hello Eiven");  
 		return "/user/index";
-    }
+    }*/
     
 }
