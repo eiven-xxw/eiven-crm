@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50717
 File Encoding         : 65001
 
-Date: 2018-03-15 17:24:48
+Date: 2018-03-16 16:55:55
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -206,9 +206,9 @@ CREATE TABLE `sys_role_menu` (
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_user`;
 CREATE TABLE `sys_user` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `company_id` bigint(20) NOT NULL COMMENT '归属公司',
-  `office_id` bigint(20) NOT NULL COMMENT '归属部门',
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `company_id` int(11) DEFAULT NULL COMMENT '归属公司',
+  `office_id` int(11) DEFAULT NULL COMMENT '归属部门',
   `login_name` varchar(100) NOT NULL COMMENT '登录名',
   `password` varchar(100) NOT NULL COMMENT '密码',
   `no` varchar(100) DEFAULT NULL COMMENT '工号',
@@ -221,19 +221,20 @@ CREATE TABLE `sys_user` (
   `login_ip` varchar(100) DEFAULT NULL COMMENT '最后登陆IP',
   `login_time` datetime DEFAULT NULL COMMENT '最后登陆时间',
   `login_flag` varchar(64) DEFAULT NULL COMMENT '是否可登录',
-  `create_id` varchar(64) NOT NULL COMMENT '创建者',
+  `create_id` int(11) NOT NULL COMMENT '创建者',
   `create_time` datetime NOT NULL COMMENT '创建时间',
-  `update_id` varchar(64) NOT NULL COMMENT '更新者',
+  `update_id` int(11) NOT NULL COMMENT '更新者',
   `update_time` datetime NOT NULL COMMENT '更新时间',
   `remarks` varchar(255) DEFAULT NULL COMMENT '备注信息',
-  `del_flag` char(1) NOT NULL DEFAULT '0' COMMENT '删除标记',
+  `del_flag` int(1) DEFAULT '0' COMMENT '删除标记',
+  `is_use` int(1) DEFAULT '0' COMMENT '是否使用',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('1', '0', '0', '', '', null, '', null, null, null, null, null, null, null, null, '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', null, '0');
+INSERT INTO `sys_user` VALUES ('1', null, null, 'eiven', '123', null, '', null, null, null, null, null, null, null, null, '1', '2018-03-16 11:44:17', '1', '2018-03-16 11:44:20', null, '0', '0');
 
 -- ----------------------------
 -- Table structure for sys_user_role
