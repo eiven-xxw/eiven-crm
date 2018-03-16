@@ -1,20 +1,18 @@
 
 package com.eivencrm.controller;
 
-import com.alibaba.fastjson.JSONObject;
 import com.eivencrm.entity.MkUser;
+import com.eivencrm.entity.SysUserEntity;
 import com.eivencrm.service.MkUserService;
+import com.eivencrm.service.SysUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 @Controller
@@ -27,6 +25,8 @@ public class LoginController {
 
     @Autowired
     private MkUserService mkUserService;
+    @Autowired
+    private SysUserService sysUserServic1e;
 
     
     @RequestMapping("login")
@@ -42,6 +42,9 @@ public class LoginController {
         ModelAndView mv = new ModelAndView();
         System.out.println("======登录验证=========");
        // mv.setViewName("redirect:/login");
+        SysUserEntity en = sysUserServic1e.getUserByLoginName("eiven");
+       // SysUserEntity en = (SysUserEntity) sysUserServic1e.findByid(new SysUserEntity(),1);
+        MkUser user = mkUserService.getById("1");
         mv.setViewName("/system/home/index");
         return mv;
     }

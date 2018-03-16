@@ -1,17 +1,18 @@
 
 
-package com.eivencrm.dao;
+package com.eivencrm.dao.impl;
 
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import com.eivencrm.dao.MkUserDao;
 import org.springframework.stereotype.Repository;
 
 import com.eivencrm.entity.MkUser;
 @Repository
-public class MkUserDaoImpl implements MkUserDao{
+public class MkUserDaoImpl implements MkUserDao {
 
 	@PersistenceContext
     private EntityManager entityManager;

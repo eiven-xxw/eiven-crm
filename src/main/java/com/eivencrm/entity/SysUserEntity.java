@@ -7,9 +7,9 @@ import java.util.Objects;
 @Entity
 @Table(name = "sys_user", schema = "eivencrm", catalog = "")
 public class SysUserEntity {
-    private long id;
-    private long companyId;
-    private long officeId;
+    private Integer id;
+    private Integer companyId;
+    private Integer officeId;
     private String loginName;
     private String password;
     private String no;
@@ -22,45 +22,46 @@ public class SysUserEntity {
     private String loginIp;
     private Timestamp loginTime;
     private String loginFlag;
-    private String createId;
+    private Integer createId;
     private Timestamp createTime;
-    private String updateId;
+    private Integer updateId;
     private Timestamp updateTime;
     private String remarks;
-    private String delFlag;
+    private Integer delFlag;
+    private Integer isUse;
 
     @Id
-    @Column(name = "id")
-    public long getId() {
+    @Column(name = "id", nullable = false)
+    public Integer getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
     @Basic
-    @Column(name = "company_id")
-    public long getCompanyId() {
+    @Column(name = "company_id", nullable = true)
+    public Integer getCompanyId() {
         return companyId;
     }
 
-    public void setCompanyId(long companyId) {
+    public void setCompanyId(Integer companyId) {
         this.companyId = companyId;
     }
 
     @Basic
-    @Column(name = "office_id")
-    public long getOfficeId() {
+    @Column(name = "office_id", nullable = true)
+    public Integer getOfficeId() {
         return officeId;
     }
 
-    public void setOfficeId(long officeId) {
+    public void setOfficeId(Integer officeId) {
         this.officeId = officeId;
     }
 
     @Basic
-    @Column(name = "login_name")
+    @Column(name = "login_name", nullable = false, length = 100)
     public String getLoginName() {
         return loginName;
     }
@@ -70,7 +71,7 @@ public class SysUserEntity {
     }
 
     @Basic
-    @Column(name = "password")
+    @Column(name = "password", nullable = false, length = 100)
     public String getPassword() {
         return password;
     }
@@ -80,7 +81,7 @@ public class SysUserEntity {
     }
 
     @Basic
-    @Column(name = "no")
+    @Column(name = "no", nullable = true, length = 100)
     public String getNo() {
         return no;
     }
@@ -90,7 +91,7 @@ public class SysUserEntity {
     }
 
     @Basic
-    @Column(name = "name")
+    @Column(name = "name", nullable = false, length = 100)
     public String getName() {
         return name;
     }
@@ -100,7 +101,7 @@ public class SysUserEntity {
     }
 
     @Basic
-    @Column(name = "email")
+    @Column(name = "email", nullable = true, length = 200)
     public String getEmail() {
         return email;
     }
@@ -110,7 +111,7 @@ public class SysUserEntity {
     }
 
     @Basic
-    @Column(name = "phone")
+    @Column(name = "phone", nullable = true, length = 200)
     public String getPhone() {
         return phone;
     }
@@ -120,7 +121,7 @@ public class SysUserEntity {
     }
 
     @Basic
-    @Column(name = "mobile")
+    @Column(name = "mobile", nullable = true, length = 200)
     public String getMobile() {
         return mobile;
     }
@@ -130,7 +131,7 @@ public class SysUserEntity {
     }
 
     @Basic
-    @Column(name = "user_type")
+    @Column(name = "user_type", nullable = true, length = 1)
     public String getUserType() {
         return userType;
     }
@@ -140,7 +141,7 @@ public class SysUserEntity {
     }
 
     @Basic
-    @Column(name = "photo")
+    @Column(name = "photo", nullable = true, length = 1000)
     public String getPhoto() {
         return photo;
     }
@@ -150,7 +151,7 @@ public class SysUserEntity {
     }
 
     @Basic
-    @Column(name = "login_ip")
+    @Column(name = "login_ip", nullable = true, length = 100)
     public String getLoginIp() {
         return loginIp;
     }
@@ -160,7 +161,7 @@ public class SysUserEntity {
     }
 
     @Basic
-    @Column(name = "login_time")
+    @Column(name = "login_time", nullable = true)
     public Timestamp getLoginTime() {
         return loginTime;
     }
@@ -170,7 +171,7 @@ public class SysUserEntity {
     }
 
     @Basic
-    @Column(name = "login_flag")
+    @Column(name = "login_flag", nullable = true, length = 64)
     public String getLoginFlag() {
         return loginFlag;
     }
@@ -180,17 +181,17 @@ public class SysUserEntity {
     }
 
     @Basic
-    @Column(name = "create_id")
-    public String getCreateId() {
+    @Column(name = "create_id", nullable = false)
+    public Integer getCreateId() {
         return createId;
     }
 
-    public void setCreateId(String createId) {
+    public void setCreateId(Integer createId) {
         this.createId = createId;
     }
 
     @Basic
-    @Column(name = "create_time")
+    @Column(name = "create_time", nullable = false)
     public Timestamp getCreateTime() {
         return createTime;
     }
@@ -200,17 +201,17 @@ public class SysUserEntity {
     }
 
     @Basic
-    @Column(name = "update_id")
-    public String getUpdateId() {
+    @Column(name = "update_id", nullable = false)
+    public Integer getUpdateId() {
         return updateId;
     }
 
-    public void setUpdateId(String updateId) {
+    public void setUpdateId(Integer updateId) {
         this.updateId = updateId;
     }
 
     @Basic
-    @Column(name = "update_time")
+    @Column(name = "update_time", nullable = false)
     public Timestamp getUpdateTime() {
         return updateTime;
     }
@@ -220,7 +221,7 @@ public class SysUserEntity {
     }
 
     @Basic
-    @Column(name = "remarks")
+    @Column(name = "remarks", nullable = true, length = 255)
     public String getRemarks() {
         return remarks;
     }
@@ -230,13 +231,23 @@ public class SysUserEntity {
     }
 
     @Basic
-    @Column(name = "del_flag")
-    public String getDelFlag() {
+    @Column(name = "del_flag", nullable = true)
+    public Integer getDelFlag() {
         return delFlag;
     }
 
-    public void setDelFlag(String delFlag) {
+    public void setDelFlag(Integer delFlag) {
         this.delFlag = delFlag;
+    }
+
+    @Basic
+    @Column(name = "is_use", nullable = true)
+    public Integer getIsUse() {
+        return isUse;
+    }
+
+    public void setIsUse(Integer isUse) {
+        this.isUse = isUse;
     }
 
     @Override
@@ -244,9 +255,9 @@ public class SysUserEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SysUserEntity that = (SysUserEntity) o;
-        return id == that.id &&
-                companyId == that.companyId &&
-                officeId == that.officeId &&
+        return Objects.equals(id, that.id) &&
+                Objects.equals(companyId, that.companyId) &&
+                Objects.equals(officeId, that.officeId) &&
                 Objects.equals(loginName, that.loginName) &&
                 Objects.equals(password, that.password) &&
                 Objects.equals(no, that.no) &&
@@ -264,12 +275,13 @@ public class SysUserEntity {
                 Objects.equals(updateId, that.updateId) &&
                 Objects.equals(updateTime, that.updateTime) &&
                 Objects.equals(remarks, that.remarks) &&
-                Objects.equals(delFlag, that.delFlag);
+                Objects.equals(delFlag, that.delFlag) &&
+                Objects.equals(isUse, that.isUse);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, companyId, officeId, loginName, password, no, name, email, phone, mobile, userType, photo, loginIp, loginTime, loginFlag, createId, createTime, updateId, updateTime, remarks, delFlag);
+        return Objects.hash(id, companyId, officeId, loginName, password, no, name, email, phone, mobile, userType, photo, loginIp, loginTime, loginFlag, createId, createTime, updateId, updateTime, remarks, delFlag, isUse);
     }
 }
