@@ -12,6 +12,7 @@ public class ExeptionHandler {
     @ExceptionHandler(value = Exception.class)
     public ModelAndView defaultErrorHandler(HttpServletRequest req, Exception e) {
         ModelAndView mv = new ModelAndView();
+        System.out.println("====页面异常====");
         mv.addObject("e", e);
         mv.addObject("uri", req.getRequestURI());
         return mv;

@@ -33,7 +33,7 @@ public abstract class BaseDaoImpl<T,ID extends Serializable> implements BaseDao<
     }
     @Transactional
     @Override
-    public T findByid(T entity,Integer id) {
+    public T findByid(T entity,ID id) {
         return (T)entityManager.find(entity.getClass(),id);
     }
     @Transactional

@@ -22,7 +22,7 @@ public abstract class BaseServiceImpl<T,ID extends Serializable> implements Base
     }
 
     @Override
-    public T findByid(T t, Integer id) {
+    public T findByid(T t, ID id) {
         return baseDao.findByid(t,id);
     }
 

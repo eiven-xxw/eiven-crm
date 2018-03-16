@@ -18,7 +18,7 @@ public interface BaseDao<T,ID extends Serializable> {
      * @param t
      * @return
      */
-    T findByid(T t,Integer id);
+    T findByid(T t,ID id);
     /**
      * 根据表名，字段，参数查询，拼接sql语句
      * @param  tablename 表名
