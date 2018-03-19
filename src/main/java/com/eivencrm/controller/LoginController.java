@@ -1,6 +1,7 @@
 
 package com.eivencrm.controller;
 
+import com.eivencrm.common.config.JsonConsts;
 import com.eivencrm.common.util.StringUtils;
 import com.eivencrm.entity.MkUser;
 import com.eivencrm.entity.SysUserEntity;
@@ -19,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
 @Controller
-public class LoginController {
+public class LoginController extends BaseController{
 	
 	  /**
      * 日志（slf4j->logback）
@@ -29,7 +30,7 @@ public class LoginController {
     @Autowired
     private MkUserService mkUserService;
     @Autowired
-    private SysUserService sysUserServic1e;
+    private SysUserService sysUserService;
 
     
     @RequestMapping("login")
@@ -48,21 +49,22 @@ public class LoginController {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         if(StringUtils.isBlank(username)||StringUtils.isBlank(password)){
-            mv.setViewName("/system/home/index");
+            mv.addObject(JsonConsts.ErrMsg,JsonConsts.Err_Wrong_Param.getInfo());
+            return mv;
+        }else{
+            SysUserEntity userEn = sysUserService.getUserByLoginName("eiven");
+            if(userEn!=null){
+                if(password.equals(userEn.getPassword())){
+                    this.getCurrentRequest().getSession().setAttribute("UserBo",userEn);
+                    mv.setViewName("/system/home/index");
+                }else{
+                    mv.addObject(JsonConsts.ErrMsg,JsonConsts.Err_Unknown.getInfo());
+                }
+            }
         }
-        SysUserEntity userEn = sysUserServic1e.getUserByLoginName("eiven");
-        if(userEn!=null){
-
-        }
-
-
-
         System.out.println("======登录验证=========");
        // mv.setViewName("redirect:/login");
-
        // SysUserEntity en = (SysUserEntity) sysUserServic1e.findByid(new SysUserEntity(),1);
-        MkUser user = mkUserService.getById("1");
-        mv.setViewName("/system/home/index");
         return mv;
     }
 }
