@@ -43,12 +43,12 @@ public class LoginController extends BaseController{
 		return "/system/login";
     }
     @RequestMapping(value = "doLogin",method = RequestMethod.POST)
-    public ModelAndView doLogin(HttpServletRequest request, HttpServletResponse response){
+    public ModelAndView doLogin(HttpServletRequest request, HttpServletResponse response) throws Exception{
        /* @RequestParam(value = "username",required = false)  String username ,
         @RequestParam(value = "password", required = false) String password*/
 
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("/system/login");
+        //mv.setViewName("/system/login");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         if(StringUtils.isBlank(username)||StringUtils.isBlank(password)){
