@@ -30,7 +30,7 @@ public final class JsonConsts {
 	public static final JsonResult Err_User_Wrong_Password = JsonResult.putCustomFail(2004, "密码格式不正确");
 	public static final JsonResult Err_User_Limit = JsonResult.putCustomFail(2005, "用户被禁止使用");
 	public static final JsonResult Err_User_Wxid_NotMatch = JsonResult.putCustomFail(2006, "用户微信号不匹配");
-	public static final JsonResult Err_User_Passord_NotEqual = JsonResult.putCustomFail(2007, " 两次输入的密码不一致");
+	public static final JsonResult Err_User_Passord_NotEqual = JsonResult.putCustomFail(2007, "账号或密码输入错误");
 	
 
 	/**

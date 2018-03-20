@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import com.eivencrm.common.util.RequestUtil;
 import com.eivencrm.common.util.StringUtils;
+import com.eivencrm.entity.SysUserEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
@@ -46,6 +47,10 @@ public class BaseController  {
 	
 	protected HttpSession getCurrentsession() {
 		return getCurrentRequest().getSession();
+	}
+
+	protected SysUserEntity getUserBo() {
+		return (SysUserEntity) getCurrentRequest().getSession().getAttribute("UserBo");
 	}
 	
 	protected void addCookie(Cookie cookie) {

@@ -15,6 +15,7 @@ public class ExeptionHandler {
         System.out.println("====页面异常====");
         mv.addObject("e", e);
         mv.addObject("uri", req.getRequestURI());
+        mv.setViewName("/system/error");
         return mv;
     }
 }
