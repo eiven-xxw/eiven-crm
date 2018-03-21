@@ -63,9 +63,9 @@ layui.config({
         spreadOne: true,
         elem: '#admin-navbar-side',
         cached: true,
-        data: navs
-		/*cached:true,
-		url: 'datas/nav.json'*/
+       // data: navs
+		cached:false,
+		url: 'initMenu'
     });
     //渲染navbar
     navbar.render();

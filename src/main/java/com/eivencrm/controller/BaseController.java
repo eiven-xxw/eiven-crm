@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Locale;
 
+import javax.persistence.Table;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import com.eivencrm.common.util.RequestUtil;
 import com.eivencrm.common.util.StringUtils;
+import com.eivencrm.entity.SysMenuEntity;
 import com.eivencrm.entity.SysUserEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -120,7 +122,20 @@ public class BaseController  {
 		 RequestContext requestContext = new RequestContext(getCurrentRequest());
 		 return requestContext.getMessage(code, params);
 	}
-	
+
+	/**
+	 * 获取Hql表名
+	 * */
+	protected  String getHqlTableName(Class clazz){
+		return clazz.getSimpleName();
+	}
+	/**
+	 * 获取Sql表名
+	 * */
+	protected  String getSqlTableName(Class clazz){
+		Table annotation = (Table)clazz.getAnnotation(Table.class);
+		return annotation.name();
+	}
 
 	
 	protected boolean isSkipUrl(String url) {

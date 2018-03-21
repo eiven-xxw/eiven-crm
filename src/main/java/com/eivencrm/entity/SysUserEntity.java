@@ -29,6 +29,7 @@ public class SysUserEntity {
     private String remarks;
     private Integer delFlag;
     private Integer isUse;
+    private Integer departmentId;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -283,5 +284,15 @@ public class SysUserEntity {
     public int hashCode() {
 
         return Objects.hash(id, companyId, officeId, loginName, password, no, name, email, phone, mobile, userType, photo, loginIp, loginTime, loginFlag, createId, createTime, updateId, updateTime, remarks, delFlag, isUse);
+    }
+
+    @Basic
+    @Column(name = "department_id", nullable = true)
+    public Integer getDepartmentId() {
+        return departmentId;
+    }
+
+    public void setDepartmentId(Integer departmentId) {
+        this.departmentId = departmentId;
     }
 }

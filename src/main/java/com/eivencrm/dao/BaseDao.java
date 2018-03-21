@@ -1,10 +1,15 @@
 package com.eivencrm.dao;
 
+
 import java.io.Serializable;
 import java.util.LinkedHashMap;
 import java.util.List;
 
 public interface BaseDao<T,ID extends Serializable> {
+    /**
+     * 查询所有
+     * */
+    List<T> findAll(String tablename);
 
     /**
      * 保存数据对象

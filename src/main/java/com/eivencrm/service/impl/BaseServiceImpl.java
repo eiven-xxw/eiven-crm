@@ -3,18 +3,24 @@ package com.eivencrm.service.impl;
 import com.eivencrm.dao.BaseDao;
 import com.eivencrm.service.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-@Service
+@Service("baseServiceImpl")
 public abstract class BaseServiceImpl<T,ID extends Serializable> implements BaseService<T,ID> {
 
 
     @Autowired
     private BaseDao<T,ID> baseDao;
+
+    @Override
+    public List<T> findAll(String tablename) {
+        return baseDao.findAll(tablename);
+    }
 
     @Override
     public boolean save(T entity) {

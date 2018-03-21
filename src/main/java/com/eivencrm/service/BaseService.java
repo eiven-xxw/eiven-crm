@@ -5,6 +5,11 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 public interface BaseService<T,ID extends Serializable> {
+
+    /**
+     * 查询所有
+     * */
+    List<T> findAll(String tablename);
     /**
      * 保存数据对象
      * @param entity

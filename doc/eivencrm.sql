@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50717
 File Encoding         : 65001
 
-Date: 2018-03-16 16:55:55
+Date: 2018-03-21 18:18:21
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -97,58 +97,49 @@ INSERT INTO `mk_user` VALUES ('70', '刘德华', '刘德华', '', '1587457543', 
 INSERT INTO `mk_user` VALUES ('71', '15875927551@qq.com', 'tomcat', '', '15875677543', '15875927551@qq.com', 'e10adc3949ba59abbe56e057f20f883e', '测试1', '0', '1480003200', '0', 'hhy', 'http://yinlidao-10018982.image.myqcloud.com/3/71/ZNNQWuhIDs6h36UQhKQ/QQ图片20161210113705.gif?imageView2/5/width/250/height/300', '测试', '', '', '0', '', '', '1', '1', '1', '', '广东', '广州', '天河区', 'sys_teacher', '0', '', '', '1', '0', '1481092996', '32', '0.00', '0', '1487405259', '{\"rewardCount\":2,\"rewardLastTime\":1487647428}', '0', '0', '1486633249', '3', '1489133466', '3', '0', '0');
 
 -- ----------------------------
--- Table structure for sys_menu
+-- Table structure for sys_company
 -- ----------------------------
-DROP TABLE IF EXISTS `sys_menu`;
-CREATE TABLE `sys_menu` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `parent_id` bigint(20) DEFAULT NULL COMMENT '父菜单id',
-  `parent_ids` varchar(500) DEFAULT NULL COMMENT '所有父id',
-  `name` varchar(100) DEFAULT NULL COMMENT '菜单名称',
-  `url` varchar(1000) DEFAULT NULL COMMENT '菜单链接',
-  `icon` varchar(255) DEFAULT NULL COMMENT '菜单图标',
-  `sort` int(11) DEFAULT NULL COMMENT '排序',
-  `status` varchar(6) DEFAULT NULL COMMENT '状态（0显示，1隐藏)',
-  `permission` varchar(255) DEFAULT NULL COMMENT '权限标识',
-  `remark` varchar(255) DEFAULT NULL COMMENT '备注',
-  `type` varchar(255) DEFAULT NULL,
-  `open` varchar(5) DEFAULT NULL COMMENT '是否展开 true 是 false 否',
-  `bapid` varchar(32) DEFAULT NULL COMMENT '机构',
-  `baid` varchar(32) DEFAULT NULL COMMENT '部门',
-  `update_id` varchar(32) DEFAULT NULL,
-  `update_time` datetime DEFAULT NULL,
-  `create_id` varchar(32) DEFAULT NULL,
-  `create_time` datetime DEFAULT NULL,
+DROP TABLE IF EXISTS `sys_company`;
+CREATE TABLE `sys_company` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `parent_id` int(11) DEFAULT NULL COMMENT '父级编号',
+  `name` varchar(100) DEFAULT NULL COMMENT '名称',
+  `address` varchar(255) DEFAULT NULL,
+  `sort` int(10) DEFAULT NULL COMMENT '排序',
+  `phone` varchar(200) DEFAULT NULL COMMENT '电话',
+  `fax` varchar(200) DEFAULT NULL COMMENT '传真',
+  `email` varchar(200) DEFAULT NULL COMMENT '邮箱',
+  `useable` varchar(64) DEFAULT NULL COMMENT '是否启用',
+  `primary_person` varchar(64) DEFAULT NULL COMMENT '主负责人',
+  `deputy_person` varchar(64) DEFAULT NULL COMMENT '副负责人',
+  `create_by` varchar(64) DEFAULT NULL COMMENT '创建者',
+  `create_date` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(64) DEFAULT NULL COMMENT '更新者',
+  `update_date` datetime DEFAULT NULL COMMENT '更新时间',
+  `remarks` varchar(255) DEFAULT NULL COMMENT '备注信息',
+  `del_flag` bit(1) DEFAULT b'0' COMMENT '删除标记',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of sys_menu
+-- Records of sys_company
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for sys_office
+-- Table structure for sys_department
 -- ----------------------------
-DROP TABLE IF EXISTS `sys_office`;
-CREATE TABLE `sys_office` (
-  `id` bigint(20) NOT NULL,
-  `parent_id` bigint(20) NOT NULL COMMENT '父级编号',
-  `parent_ids` varchar(500) NOT NULL COMMENT '所有父级编号',
+DROP TABLE IF EXISTS `sys_department`;
+CREATE TABLE `sys_department` (
+  `id` int(20) NOT NULL,
+  `parent_id` int(20) NOT NULL COMMENT '父级编号',
   `name` varchar(100) NOT NULL COMMENT '名称',
-  `sort` decimal(10,0) NOT NULL COMMENT '排序',
-  `area_id` varchar(64) NOT NULL COMMENT '归属区域',
-  `code` varchar(100) DEFAULT NULL COMMENT '区域编码',
-  `type` char(1) NOT NULL COMMENT '机构类型',
-  `grade` char(1) NOT NULL COMMENT '机构等级',
-  `address` varchar(255) DEFAULT NULL COMMENT '联系地址',
-  `zip_code` varchar(100) DEFAULT NULL COMMENT '邮政编码',
-  `master` varchar(100) DEFAULT NULL COMMENT '负责人',
+  `sort` int(10) NOT NULL COMMENT '排序',
   `phone` varchar(200) DEFAULT NULL COMMENT '电话',
   `fax` varchar(200) DEFAULT NULL COMMENT '传真',
   `email` varchar(200) DEFAULT NULL COMMENT '邮箱',
-  `USEABLE` varchar(64) DEFAULT NULL COMMENT '是否启用',
-  `PRIMARY_PERSON` varchar(64) DEFAULT NULL COMMENT '主负责人',
-  `DEPUTY_PERSON` varchar(64) DEFAULT NULL COMMENT '副负责人',
+  `useable` varchar(64) DEFAULT NULL COMMENT '是否启用',
+  `primary_person` varchar(64) DEFAULT NULL COMMENT '主负责人',
+  `deputy_person` varchar(64) DEFAULT NULL COMMENT '副负责人',
   `create_by` varchar(64) NOT NULL COMMENT '创建者',
   `create_date` datetime NOT NULL COMMENT '创建时间',
   `update_by` varchar(64) NOT NULL COMMENT '更新者',
@@ -159,8 +150,38 @@ CREATE TABLE `sys_office` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of sys_office
+-- Records of sys_department
 -- ----------------------------
+
+-- ----------------------------
+-- Table structure for sys_menu
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_menu`;
+CREATE TABLE `sys_menu` (
+  `id` int(20) NOT NULL AUTO_INCREMENT,
+  `parent_id` int(20) DEFAULT NULL COMMENT '父菜单id',
+  `name` varchar(100) DEFAULT NULL COMMENT '菜单名称',
+  `url` varchar(500) DEFAULT NULL COMMENT '菜单链接',
+  `icon` varchar(255) DEFAULT NULL COMMENT '菜单图标',
+  `sort` int(11) DEFAULT NULL COMMENT '排序',
+  `isuse` bit(1) DEFAULT b'1' COMMENT '状态（0显示，1隐藏)',
+  `permission` varchar(255) DEFAULT NULL COMMENT '权限标识',
+  `remark` varchar(255) DEFAULT NULL COMMENT '备注',
+  `type` varchar(255) DEFAULT NULL,
+  `isopen` bit(1) DEFAULT b'0' COMMENT '是否展开 true 是 false 否',
+  `update_id` int(11) DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `create_id` int(11) DEFAULT NULL,
+  `create_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of sys_menu
+-- ----------------------------
+INSERT INTO `sys_menu` VALUES ('1', null, '系统设置', null, '&#xe614;', '1', '', null, null, null, '\0', '1', '2018-03-21 13:53:51', '1', '2018-03-21 13:53:54');
+INSERT INTO `sys_menu` VALUES ('2', '1', '菜单设置', null, null, '1', '', null, null, null, '\0', '1', null, '1', null);
+INSERT INTO `sys_menu` VALUES ('3', '1', '用户设置', '', '', '2', '', '', '', '', '\0', '1', '2018-03-21 13:53:51', '1', '2018-03-21 13:53:54');
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -191,8 +212,8 @@ CREATE TABLE `sys_role` (
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_role_menu`;
 CREATE TABLE `sys_role_menu` (
-  `role_id` bigint(20) NOT NULL COMMENT '角色id',
-  `menu_id` bigint(20) NOT NULL COMMENT '权限id',
+  `role_id` int(20) NOT NULL COMMENT '角色id',
+  `menu_id` int(20) NOT NULL COMMENT '权限id',
   `create_time` datetime DEFAULT NULL,
   PRIMARY KEY (`role_id`,`menu_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -208,7 +229,7 @@ DROP TABLE IF EXISTS `sys_user`;
 CREATE TABLE `sys_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `company_id` int(11) DEFAULT NULL COMMENT '归属公司',
-  `office_id` int(11) DEFAULT NULL COMMENT '归属部门',
+  `department_id` int(11) DEFAULT NULL COMMENT '归属部门',
   `login_name` varchar(100) NOT NULL COMMENT '登录名',
   `password` varchar(100) NOT NULL COMMENT '密码',
   `no` varchar(100) DEFAULT NULL COMMENT '工号',
@@ -234,15 +255,15 @@ CREATE TABLE `sys_user` (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('1', null, null, 'eiven', '123', null, '', null, null, null, null, null, null, null, null, '1', '2018-03-16 11:44:17', '1', '2018-03-16 11:44:20', null, '0', '0');
+INSERT INTO `sys_user` VALUES ('1', null, null, 'eiven', 'c4ca4238a0b923820dcc509a6f75849b', null, '', null, null, null, null, null, null, null, null, '1', '2018-03-16 11:44:17', '1', '2018-03-16 11:44:20', null, '0', '0');
 
 -- ----------------------------
 -- Table structure for sys_user_role
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_user_role`;
 CREATE TABLE `sys_user_role` (
-  `user_id` varchar(32) NOT NULL COMMENT '用户id',
-  `role_id` varchar(32) NOT NULL COMMENT '角色id',
+  `user_id` int(11) NOT NULL COMMENT '用户id',
+  `role_id` int(11) NOT NULL COMMENT '角色id',
   `create_time` datetime DEFAULT NULL,
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

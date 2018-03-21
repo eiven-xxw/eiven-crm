@@ -1,6 +1,7 @@
 package com.eivencrm.dao.impl;
 
 import com.eivencrm.dao.BaseDao;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,7 +18,17 @@ import java.util.Set;
 public abstract class BaseDaoImpl<T,ID extends Serializable> implements BaseDao<T,ID> {
 
     @PersistenceContext
-    private EntityManager entityManager;
+    protected EntityManager entityManager;
+
+    @Override
+    public List<T> findAll(String tablename) {
+        String sql=" from "+tablename+" u ";
+        Query query=entityManager.createQuery(sql);
+        List<T> list= query.getResultList();
+        entityManager.close();
+        return list;
+    }
+
     @Transactional
     @Override
     public boolean save(T entity){

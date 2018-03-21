@@ -32,4 +32,12 @@ public class HomeController {
 		return mv;
     }
 
+    @RequestMapping("layout")
+    public ModelAndView layout(){
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("redirect:/login");
+        return mv;
+    }
+
+
 }
