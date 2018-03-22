@@ -98,10 +98,23 @@
 
 	<build>
 		<plugins>
-		   <!--  <plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>  -->
+		   <plugin>
+			   <!--打包maven jar-->
+			   <groupId>org.springframework.boot</groupId>
+			   <artifactId>spring-boot-maven-plugin</artifactId>
+			   <configuration>
+				   <mainClass>
+					   com.eivencrm.EivenCrmApplication
+				   </mainClass>
+			   </configuration>
+			   <executions>
+				   <execution>
+					   <goals>
+						   <goal>repackage</goal>
+					   </goals>
+				   </execution>
+			   </executions>
+		   </plugin>
 			<!-- <plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
@@ -109,7 +122,9 @@
 					<warName>spring-boot-eivenweb</warName>
 				</configuration>
 			</plugin> -->
-            <plugin>
+           <!--
+           	热部署
+           	<plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
@@ -125,14 +140,14 @@
                		</dependency>
                 </dependencies>
                
-               <!--  <executions>
+                 <executions>
                     <execution>
                         <goals>
                             <goal>repackage</goal>
                         </goals>
                     </execution>
-                </executions> -->
-            </plugin>
+                </executions>
+            </plugin>-->
 		</plugins>
 		
 	</build>

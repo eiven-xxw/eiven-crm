@@ -1,0 +1,31 @@
+Manifest-Version: 1.0
+Class-Path: thymeleaf-spring4-2.1.6.RELEASE.jar spring-boot-autoconfig
+ ure-1.5.9.RELEASE.jar spring-webmvc-4.3.13.RELEASE.jar log4j-over-slf
+ 4j-1.7.25.jar mysql-connector-java-5.1.44.jar jandex-2.0.0.Final.jar 
+ tomcat-embed-el-8.5.23.jar spring-boot-starter-jdbc-1.5.9.RELEASE.jar
+  spring-boot-starter-tomcat-1.5.9.RELEASE.jar spring-data-commons-1.1
+ 3.9.RELEASE.jar groovy-2.4.13.jar spring-boot-starter-1.5.9.RELEASE.j
+ ar spring-expression-4.3.13.RELEASE.jar commons-lang-2.6.jar jcl-over
+ -slf4j-1.7.25.jar javax.transaction-api-1.2.jar spring-boot-starter-a
+ op-1.5.9.RELEASE.jar spring-jdbc-4.3.13.RELEASE.jar spring-data-jpa-1
+ .11.9.RELEASE.jar tomcat-embed-core-8.5.23.jar classmate-1.3.4.jar ja
+ vassist-3.21.0-GA.jar aspectjweaver-1.8.13.jar antlr-2.7.7.jar hibern
+ ate-core-5.0.12.Final.jar spring-aop-4.3.13.RELEASE.jar slf4j-api-1.7
+ .25.jar jackson-annotations-2.8.0.jar hibernate-entitymanager-5.0.12.
+ Final.jar hibernate-jpa-2.1-api-1.0.0.Final.jar spring-web-4.3.13.REL
+ EASE.jar thymeleaf-2.1.6.RELEASE.jar snakeyaml-1.17.jar spring-boot-1
+ .5.9.RELEASE.jar spring-boot-starter-web-1.5.9.RELEASE.jar dom4j-1.6.
+ 1.jar hibernate-validator-5.3.6.Final.jar jackson-core-2.8.10.jar spr
+ ing-tx-4.3.13.RELEASE.jar fastjson-1.2.32.jar jul-to-slf4j-1.7.25.jar
+  spring-beans-4.3.13.RELEASE.jar hibernate-commons-annotations-5.0.1.
+ Final.jar thymeleaf-layout-dialect-1.4.0.jar spring-boot-starter-logg
+ ing-1.5.9.RELEASE.jar logback-classic-1.1.11.jar tomcat-jdbc-8.5.23.j
+ ar tomcat-juli-8.5.23.jar spring-orm-4.3.13.RELEASE.jar spring-boot-s
+ tarter-data-jpa-1.5.9.RELEASE.jar spring-boot-starter-thymeleaf-1.5.9
+ .RELEASE.jar tomcat-embed-websocket-8.5.23.jar unbescape-1.1.0.RELEAS
+ E.jar logback-core-1.1.11.jar ognl-3.0.8.jar tomcat-annotations-api-8
+ .5.23.jar jackson-databind-2.8.10.jar spring-core-4.3.13.RELEASE.jar 
+ validation-api-1.1.0.Final.jar spring-aspects-4.3.13.RELEASE.jar spri
+ ng-context-4.3.13.RELEASE.jar jboss-logging-3.3.1.Final.jar
+Main-Class: com.eivencrm.EivenCrmApplication
+
