@@ -55,7 +55,7 @@ public class MenuController extends BaseController{
                 "\t}, {\n" +
                 "\t\t\"title\": \"用户\",\n" +
                 "\t\t\"icon\": \"&#xe63c;\",\n" +
-                "\t\t\"href\": \"table.html\"\n" +
+                "\t\t\"href\": \"userList\"\n" +
                 "\t}, {\n" +
                 "\t\t\"title\": \"角色\",\n" +
                 "\t\t\"icon\": \"&#xe609;\",\n" +

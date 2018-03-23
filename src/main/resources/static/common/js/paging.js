@@ -1,9 +1,7 @@
 /**
  * Paging 组件
  * @description 基于laytpl 、laypage、layer 封装的组件
- * @author Van zheng_jinfan@126.com
- * @link http://m.zhengjinfan.cn
- * @license MIT
+ * @author eiven
  * @version 1.0.1
  */
 layui.define(['layer', 'laypage', 'laytpl'], function (exports) {

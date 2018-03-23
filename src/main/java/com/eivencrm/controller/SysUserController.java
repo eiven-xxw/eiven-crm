@@ -25,5 +25,11 @@ public class SysUserController {
     private static final Logger logger = LoggerFactory.getLogger(SysUserController.class);
 
 
-    
+    @RequestMapping("userList")
+    public ModelAndView userList(){
+        ModelAndView mv = new ModelAndView();
+
+        mv.setViewName("/system/user/list");
+        return mv;
+    }
 }

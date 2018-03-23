@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
 /**
  * 字符串工具类
  * spring StringUtils扩展
- * @author shuang
+ * @author eiven
  */
 public class StringUtils extends org.springframework.util.StringUtils {
 
