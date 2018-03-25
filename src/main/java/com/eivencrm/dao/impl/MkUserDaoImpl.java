@@ -8,9 +8,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import com.eivencrm.dao.MkUserDao;
+import com.eivencrm.entity.MkUser;
 import org.springframework.stereotype.Repository;
 
-import com.eivencrm.entity.MkUser;
 @Repository
 public class MkUserDaoImpl implements MkUserDao {
 

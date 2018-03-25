@@ -15,9 +15,9 @@
 		<meta name="apple-mobile-web-app-capable" content="yes"/>
 		<meta name="format-detection" content="telephone=no"/>
 
-		<link rel="stylesheet" th:href="@{common/plugins/layui/css/layui.css}" media="all" />
-		<link rel="stylesheet" th:href="@{common/plugins/font-awesome/css/font-awesome.min.css}"/>
-		<link rel="stylesheet" th:href="@{common/css/btable.css}" />
+		<link rel="stylesheet" th:href="@{/common/plugins/layui/css/layui.css}" media="all" />
+		<link rel="stylesheet" th:href="@{/common/plugins/font-awesome/css/font-awesome.min.css}"/>
+		<link rel="stylesheet" th:href="@{/common/css/btable.css}" />
 
 
 	</head>
@@ -26,7 +26,7 @@
 
 	<div style="margin:0px; background-color: white; margin:0 10px;">
 		<blockquote class="layui-elem-quote">
-			<button type="button" class="layui-btn layui-btn-small" id="getAll"><i class="fa fa-plus" aria-hidden="true"></i> 添加</button>
+			<button type="button" class="layui-btn layui-btn-small" id="addUser"><i class="fa fa-plus" aria-hidden="true"></i> 添加</button>
 			<form class="layui-form" style="float:right;">
 				<div class="layui-form-item" style="margin:0;">
 					<label class="layui-form-label">名称</label>
@@ -42,8 +42,8 @@
 		<div id="content" style="width: 100%;height: 533px;"></div>
 	</div>
 
-	<script type="text/javascript" th:src="@{common/plugins/layui/layui.js}"></script>
-	<script type="text/javascript" th:src="@{js/system/user/userList.js}"></script>
+	<script type="text/javascript" th:src="@{/common/plugins/layui/layui.js}"></script>
+	<script type="text/javascript" th:src="@{/js/system/user/userList.js}"></script>
 
 	</body>
 

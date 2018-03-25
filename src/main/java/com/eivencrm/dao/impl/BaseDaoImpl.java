@@ -9,10 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Repository
 public abstract class BaseDaoImpl<T,ID extends Serializable> implements BaseDao<T,ID> {
@@ -49,7 +46,7 @@ public abstract class BaseDaoImpl<T,ID extends Serializable> implements BaseDao<
     }
     @Transactional
     @Override
-    public List<T> findBysql(String tablename, String filed, Object o ) {
+    public List<T> findByHql(String tablename, String filed, Object o ) {
         String sql="from "+tablename+" u WHERE u."+filed+"=?";
         System.out.println(sql+"--------sql语句-------------");
         Query query=entityManager.createQuery(sql);
@@ -60,9 +57,8 @@ public abstract class BaseDaoImpl<T,ID extends Serializable> implements BaseDao<
     }
 
     @Override
-    public Object findObjiectBysql(String tablename, String filed, Object o) {
+    public Object findObjiectByHql(String tablename, String filed, Object o) {
         String sql="from "+tablename+" u WHERE u."+filed+"=?";
-        System.out.println(sql+"--------sql语句-------------");
         Query query=entityManager.createQuery(sql);
         query.setParameter(1,o);
 
@@ -82,7 +78,6 @@ public abstract class BaseDaoImpl<T,ID extends Serializable> implements BaseDao<
             filedlist.add(filed);
         }
         sql=sql.substring(0,sql.length()-4);
-        System.out.println(sql+"--------sql语句-------------");
         Query query=entityManager.createQuery(sql);
         for (int i=0;i<filedlist.size();i++){
             query.setParameter(i+1,map.get(filedlist.get(i)));
@@ -93,22 +88,10 @@ public abstract class BaseDaoImpl<T,ID extends Serializable> implements BaseDao<
     }
     @Transactional
     @Override
-    public List<T> findByMoreFiledpages(String tablename,LinkedHashMap<String,Object> map,int start,int pageNumber) {
-        String sql="from "+tablename+" u WHERE ";
-        Set<String> set=null;
-        set=map.keySet();
-        List<String> list=new ArrayList<>(set);
-        List<Object> filedlist=new ArrayList<>();
-        for (String filed:list){
-            sql+="u."+filed+"=? and ";
-            filedlist.add(filed);
-        }
-        sql=sql.substring(0,sql.length()-4);
-        System.out.println(sql+"--------sql语句-------------");
-        Query query=entityManager.createQuery(sql);
-        for (int i=0;i<filedlist.size();i++){
-            query.setParameter(i+1,map.get(filedlist.get(i)));
-        }
+    public List<T> findByMoreFiledPages(String tablename, LinkedHashMap<String,List<Map<String,Object>>> map, int start, int pageNumber) {
+        StringBuffer hql= new StringBuffer("from "+tablename+" ");
+        formatHql(hql,map);
+        Query query=entityManager.createQuery(hql.toString());
         query.setFirstResult((start-1)*pageNumber);
         query.setMaxResults(pageNumber);
         List<T> listRe= query.getResultList();
@@ -119,7 +102,6 @@ public abstract class BaseDaoImpl<T,ID extends Serializable> implements BaseDao<
     @Override
     public List<T> findPages(String tablename, String filed, Object o, int start, int pageNumer) {
         String sql="from "+tablename+" u WHERE u."+filed+"=?";
-        System.out.println(sql+"--------page--sql语句-------------");
         List<T> list=new ArrayList<>();
         try {
             Query query=entityManager.createQuery(sql);
@@ -191,22 +173,38 @@ public abstract class BaseDaoImpl<T,ID extends Serializable> implements BaseDao<
     }
 
     @Override
-    public Object findCount(String tablename, LinkedHashMap<String, Object> map) {
-        String sql="select count(u) from "+tablename+" u WHERE ";
-        Set<String> set=null;
-        set=map.keySet();
-        List<String> list=new ArrayList<>(set);
-        List<Object> filedlist=new ArrayList<>();
-        for (String filed:list){
-            sql+="u."+filed+"=? and ";
-            filedlist.add(filed);
-        }
-        sql=sql.substring(0,sql.length()-4);
-        System.out.println(sql+"--------sql语句-------------");
-        Query query=entityManager.createQuery(sql);
-        for (int i=0;i<filedlist.size();i++){
-            query.setParameter(i+1,map.get(filedlist.get(i)));
-        }
+    public Object findCount(String tablename, LinkedHashMap<String,List<Map<String,Object>>> map) {
+        StringBuffer hql = new StringBuffer("select count(1) from "+tablename+" ");
+        formatHql(hql,map);
+        Query query=entityManager.createQuery(hql.toString());
         return query.getSingleResult();
     }
+    /**
+     * 格式化hql 配置查询条件
+     * */
+    private static void formatHql(StringBuffer hql,LinkedHashMap<String,List<Map<String,Object>>> map){
+        if(map!=null&&!map.isEmpty()){
+            hql.append("u WHERE ");
+            for (String operator:map.keySet()){
+                List<Map<String,Object>> params =  map.get(operator);
+                for (Map<String,Object> paramMap:params) {
+                    for (String filedKey:paramMap.keySet()) {
+                        if(operator.equals("like")||operator.equals("LIKE")){
+                            hql.append("u."+filedKey+" "+operator+" '%"+paramMap.get(filedKey).toString()+"%' and ");
+                        }else if(operator.equals("asc")||operator.equals("ASC")){
+                            hql.append(" order by u."+filedKey+" "+operator+" and ");
+                        }else if(operator.equals("desc")||operator.equals("DESC")){
+                            hql.append(" order by u."+filedKey+" "+operator+" and ");
+                        }else{
+                            hql.append("u."+filedKey+" "+operator+" '"+paramMap.get(filedKey).toString()+"' and ");
+                        }
+                    }
+                }
+            }
+            hql.delete(hql.length()-4,hql.length());
+        }
+
+    };
+
+
 }

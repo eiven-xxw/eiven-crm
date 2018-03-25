@@ -34,21 +34,21 @@ public final class JsonConsts {
 	
 
 	/**
-	 * 接口返回成功状态 1:成功
+	 * 接口返回成功状态true:成功
 	 */
-	public static final int RESULT_SUCCESS = 1;
+	public static final boolean RESULT_SUCCESS = true;
 	
 	public static final String RESULT_SUCCESS_MSG = "success"; //标准返回
 	
 	/**
-	 * 接口返回成功状态 0:失败
+	 * 接口返回成功状态 false:失败
 	 */
-	public static final int RESULT_FAIL = 0;
+	public static final boolean RESULT_FAIL = false;
 	
 	public static final String RESULT_FAIL_MSG = "failed";//标准返回
 
 	//返回通知代码
 	public static String Code = "code";
 	public static String ErrMsg = "errMsg";//
-	public static String NoticeMsg = "noticeMsg";
+	public static String Message = "message";
 }

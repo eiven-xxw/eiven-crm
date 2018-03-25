@@ -3,6 +3,7 @@ package com.eivencrm.service;
 import java.io.Serializable;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public interface BaseService<T,ID extends Serializable> {
 
@@ -30,10 +31,10 @@ public interface BaseService<T,ID extends Serializable> {
      * @param o 字段参数
      * @return
      */
-    List<T> findBysql(String tablename, String filed, Object o);
+    List<T> findByHql(String tablename, String filed, Object o);
 
 
-    Object findObjiectBysql(String tablename,String filed,Object o);
+    Object findObjiectByHql(String tablename,String filed,Object o);
 
     /**
      * 多个字段的查询
@@ -51,7 +52,7 @@ public interface BaseService<T,ID extends Serializable> {
      * @param pageNumer 一个页面的条数
      * @return
      */
-    List<T> findByMoreFiledpages(String tablename, LinkedHashMap<String,Object> map, int start, int pageNumer);
+    List<T> findByMoreFiledPages(String tablename, LinkedHashMap<String,List<Map<String,Object>>> map, int start, int pageNumer);
     /**
      * 一个字段的分页
      * @param  tablename 表名
@@ -87,5 +88,5 @@ public interface BaseService<T,ID extends Serializable> {
      * @param map 传入参数放入map中
      * @return
      */
-    Object findCount(String tablename, LinkedHashMap<String,Object> map);
+    Object findCount(String tablename,LinkedHashMap<String,List<Map<String,Object>>> map);
 }

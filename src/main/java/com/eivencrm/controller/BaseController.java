@@ -1,9 +1,5 @@
 package com.eivencrm.controller;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.Locale;
-
 import javax.persistence.Table;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +10,6 @@ import javax.servlet.http.HttpSession;
 
 import com.eivencrm.common.util.RequestUtil;
 import com.eivencrm.common.util.StringUtils;
-import com.eivencrm.entity.SysMenuEntity;
 import com.eivencrm.entity.SysUserEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,8 +19,6 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.support.RequestContext;
 import org.springframework.web.servlet.support.RequestContextUtils;
-
-import com.alibaba.fastjson.JSONObject;
 
 /**
  * @Description: TODO 

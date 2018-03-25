@@ -1,5 +1,5 @@
 layui.config({
-    base: 'common/js/',
+    base: '../common/js/',
     v: new Date().getTime()
 }).use(['btable', 'form'], function () {
     var btable = layui.btable(),
@@ -11,30 +11,30 @@ layui.config({
     btable.set({
         openWait: true,//开启等待框
         elem: '#content',
-        url: 'common/datas/btable_data.json', //数据源地址
+        url: 'userData', //数据源地址
         pageSize: 3,//页大小
         params: {//额外的请求参数
             t: new Date().getTime()
         },
         columns: [{ //配置数据列
-            fieldName: '昵称', //显示名称
+            fieldName: '名称', //显示名称
             field: 'name', //字段名
-            sortable: true //是否显示排序
+            //: true //是否显示排序
         }, {
             fieldName: '加入时间',
-            field: 'createtime',
+            field: 'createTime',
             sortable: true
         }, {
-            fieldName: '签名',
-            field: 'sign',
+            fieldName: '登陆名称',
+            field: 'loginName' /* ,
             format: function (id, obj) {
-                //id
+              //id
                 console.log(id);
                 //行数据对象
                 console.log(obj);
                 //返回值：格式化的纯文本或html文本
-                return obj.sign;
-            }
+                return obj.loginName;
+            }*/
         }, {
             fieldName: '操作',
             field: 'id',
@@ -78,11 +78,44 @@ layui.config({
     btable.render();
     //监听搜索表单的提交事件
     form.on('submit(search)', function (data) {
+
         btable.get(data.field);
         return false;
     });
+
+    $('#addUser').on("click",function(){
+        layer.open({
+            title: "新增用户",
+            type: 2,
+            area: ['70%', '80%'],
+            fix: false, //不固定
+            maxmin: true,
+            content:  'toEdit',
+            success:function(layero,index){
+
+            },
+            end:function(){    //子页面销毁时回调的方法
+                var handle = $("#handle").val();
+                if( handle == 1){
+                    layer.msg('修改成功', {
+                        icon: 1,
+                        time: 1500 //2秒关闭（如果不配置，默认是3秒）
+                    }, function(){
+                        $("#handle").attr("value","");
+                        window.location.href = '重新加载的页面';
+                    });
+
+                }
+            }
+        });
+    });
+
+
     $(window).on('resize', function (e) {
         var $that = $(this);
         $('#content').height($that.height() - 92);
     }).resize();
+
+
+
 });

@@ -7,10 +7,8 @@ import com.eivencrm.entity.SysUserEntity;
 import com.eivencrm.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-@Service()
-@Transactional
+@Service
 public class SysUserServiceImpl extends BaseServiceImpl<SysUserEntity,Integer> implements SysUserService {
 
 	@Autowired

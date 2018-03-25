@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.io.Serializable;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service("baseServiceImpl")
 public abstract class BaseServiceImpl<T,ID extends Serializable> implements BaseService<T,ID> {
@@ -33,13 +34,13 @@ public abstract class BaseServiceImpl<T,ID extends Serializable> implements Base
     }
 
     @Override
-    public List<T> findBysql(String tablename, String filed, Object o) {
-        return baseDao.findBysql(tablename,filed,o);
+    public List<T> findByHql(String tablename, String filed, Object o) {
+        return baseDao.findByHql(tablename,filed,o);
     }
 
     @Override
-    public Object findObjiectBysql(String tablename, String filed, Object o) {
-        return baseDao.findObjiectBysql(tablename,filed,o);
+    public Object findObjiectByHql(String tablename, String filed, Object o) {
+        return baseDao.findObjiectByHql(tablename,filed,o);
     }
 
     @Override
@@ -48,8 +49,8 @@ public abstract class BaseServiceImpl<T,ID extends Serializable> implements Base
     }
 
     @Override
-    public List<T> findByMoreFiledpages(String tablename, LinkedHashMap<String, Object> map, int start, int pageNumer) {
-        return baseDao.findByMoreFiledpages(tablename,map,start,pageNumer);
+    public List<T> findByMoreFiledPages(String tablename, LinkedHashMap<String,List<Map<String,Object>>> map, int start, int pageNumer) {
+        return baseDao.findByMoreFiledPages(tablename,map,start,pageNumer);
     }
 
     @Override
@@ -73,7 +74,7 @@ public abstract class BaseServiceImpl<T,ID extends Serializable> implements Base
     }
 
     @Override
-    public Object findCount(String tablename, LinkedHashMap<String, Object> map) {
+    public Object findCount(String tablename, LinkedHashMap<String,List<Map<String,Object>>> map) {
         return baseDao.findCount(tablename,map);
     }
 }

@@ -2,9 +2,9 @@
 
 package com.eivencrm.service;
 
-import java.util.List;
-
 import com.eivencrm.entity.MkUser;
+
+import java.util.List;
 
 public interface MkUserService{
 	
