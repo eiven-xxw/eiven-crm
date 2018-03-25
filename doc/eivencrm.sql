@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : mylocaldb
-Source Server Version : 50717
-Source Host           : localhost:3306
+Source Server         : 193.112.3.227
+Source Server Version : 50721
+Source Host           : 193.112.3.227:3306
 Source Database       : eivencrm
 
 Target Server Type    : MYSQL
-Target Server Version : 50717
+Target Server Version : 50721
 File Encoding         : 65001
 
-Date: 2018-03-21 18:18:21
+Date: 2018-03-25 22:22:36
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -234,6 +234,10 @@ CREATE TABLE `sys_user` (
   `password` varchar(100) NOT NULL COMMENT '密码',
   `no` varchar(100) DEFAULT NULL COMMENT '工号',
   `name` varchar(100) NOT NULL COMMENT '姓名',
+  `age` int(11) DEFAULT NULL,
+  `sex` int(11) DEFAULT NULL,
+  `birthday` datetime DEFAULT NULL,
+  `identity_card` varchar(18) DEFAULT NULL,
   `email` varchar(200) DEFAULT NULL COMMENT '邮箱',
   `phone` varchar(200) DEFAULT NULL COMMENT '电话',
   `mobile` varchar(200) DEFAULT NULL COMMENT '手机',
@@ -241,21 +245,24 @@ CREATE TABLE `sys_user` (
   `photo` varchar(1000) DEFAULT NULL COMMENT '用户头像',
   `login_ip` varchar(100) DEFAULT NULL COMMENT '最后登陆IP',
   `login_time` datetime DEFAULT NULL COMMENT '最后登陆时间',
-  `login_flag` varchar(64) DEFAULT NULL COMMENT '是否可登录',
-  `create_id` int(11) NOT NULL COMMENT '创建者',
-  `create_time` datetime NOT NULL COMMENT '创建时间',
-  `update_id` int(11) NOT NULL COMMENT '更新者',
-  `update_time` datetime NOT NULL COMMENT '更新时间',
+  `create_id` int(11) DEFAULT NULL COMMENT '创建者',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_id` int(11) DEFAULT NULL COMMENT '更新者',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `remarks` varchar(255) DEFAULT NULL COMMENT '备注信息',
-  `del_flag` int(1) DEFAULT '0' COMMENT '删除标记',
   `is_use` int(1) DEFAULT '0' COMMENT '是否使用',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('1', null, null, 'eiven', 'c4ca4238a0b923820dcc509a6f75849b', null, '', null, null, null, null, null, null, null, null, '1', '2018-03-16 11:44:17', '1', '2018-03-16 11:44:20', null, '0', '0');
+INSERT INTO `sys_user` VALUES ('1', null, null, 'eiven', 'c4ca4238a0b923820dcc509a6f75849b', null, 'eiven', null, null, null, null, null, null, null, null, null, null, null, '1', '2018-03-16 11:44:17', '1', '2018-03-16 11:44:20', null, '0');
+INSERT INTO `sys_user` VALUES ('2', null, null, 'zhangsan', 'c4ca4238a0b923820dcc509a6f75849b', '', '张三', null, null, null, null, '', '', '', '', '', '', '2018-03-23 17:14:51', '1', '2018-03-23 17:14:51', '1', '2018-03-16 11:44:20', '', '0');
+INSERT INTO `sys_user` VALUES ('3', null, null, 'lisi', 'c4ca4238a0b923820dcc509a6f75849b', '', '李四', null, null, null, null, '', '', '', '', '', '', '2018-03-24 17:14:51', '1', '2018-03-24 17:14:51', '1', '2018-03-16 11:44:20', '', '0');
+INSERT INTO `sys_user` VALUES ('4', null, null, 'wangwu', 'c4ca4238a0b923820dcc509a6f75849b', '', '王五', null, null, null, null, '', '', '', '', '', '', '2018-03-25 17:14:51', '1', '2018-03-25 17:14:51', '1', '2018-03-16 11:44:20', '', '0');
+INSERT INTO `sys_user` VALUES ('5', null, null, '马六', 'c4ca4238a0b923820dcc509a6f75849b', '', '马六', null, null, null, null, '', '', '', '', '', '', '2018-03-24 17:14:51', '1', '2018-03-16 11:44:17', '1', '2018-03-16 11:44:20', '', '0');
+INSERT INTO `sys_user` VALUES ('6', null, null, 'jh', 'c4ca4238a0b923820dcc509a6f75849b', '', 'jiahui', null, null, null, null, '', '', '', '', '', '', '2018-03-24 17:14:51', '1', '2018-03-16 11:44:17', '1', '2018-03-16 11:44:20', '', '0');
 
 -- ----------------------------
 -- Table structure for sys_user_role
@@ -311,7 +318,6 @@ DELIMITER ;;
 CREATE DEFINER=`mm`@`%` FUNCTION `harvesine`(lat1 double, lon1 double, lat2 double, lon2 double) RETURNS double
 return  3956 * 2 * ASIN(SQRT(POWER(SIN((lat1 - abs(lat2)) * pi()/180 / 2), 2)
          + COS(abs(lat1) * pi()/180 ) * COS(abs(lat2) * pi()/180) * POWER(SIN((lon1 - lon2) * pi()/180 / 2), 2) ))
-;
 ;;
 DELIMITER ;
 
