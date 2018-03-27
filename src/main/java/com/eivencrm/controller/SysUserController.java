@@ -67,9 +67,14 @@ public class SysUserController extends BaseController{
 
     //@ResponseBody
     @RequestMapping("toEdit")
-    public String toEdit(){
-
-        return "/system/user/add";
+    public ModelAndView toEdit(@RequestParam(value = "id", defaultValue = "") String id){
+        ModelAndView mv = new ModelAndView();
+        if(StringUtils.isNotBlank(id)){
+            SysUserEntity userEntity = sysUserService.findByid(new SysUserEntity(),Integer.parseInt(id));
+            mv.addObject("userEntity",userEntity);
+        }
+        mv.setViewName("/system/user/add");
+        return mv;
     }
 
     @ResponseBody
@@ -77,7 +82,6 @@ public class SysUserController extends BaseController{
     public String doSave(@ModelAttribute SysUserEntity userEntity){
 
         if(userEntity!=null){
-
         }
 
         return "";
