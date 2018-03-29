@@ -58,6 +58,7 @@ public class LoginController extends BaseController{
                 if(password.equals(userEn.getPassword())){
                     userEn.setPassword("");
                     this.getCurrentsession().setAttribute("UserBo",userEn);
+                    this.getCurrentsession().setAttribute("UserID",userEn.getId());
                     mv.setViewName("redirect:/index");
                 }else{
                     mv.addObject(JsonConsts.ErrMsg,JsonConsts.Err_User_Passord_NotEqual);

@@ -2,8 +2,10 @@
 package com.eivencrm.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.eivencrm.common.config.JsonConsts;
 import com.eivencrm.common.util.JsonContext;
 import com.eivencrm.common.util.JsonResult;
+import com.eivencrm.common.util.MD5Util;
 import com.eivencrm.common.util.StringUtils;
 import com.eivencrm.entity.SysUserEntity;
 import com.eivencrm.service.SysUserService;
@@ -69,22 +71,32 @@ public class SysUserController extends BaseController{
     @RequestMapping("toEdit")
     public ModelAndView toEdit(@RequestParam(value = "id", defaultValue = "") String id){
         ModelAndView mv = new ModelAndView();
-        if(StringUtils.isNotBlank(id)){
-            SysUserEntity userEntity = sysUserService.findByid(new SysUserEntity(),Integer.parseInt(id));
-            mv.addObject("userEntity",userEntity);
+        if(StringUtils.isNotBlank(id)) {
+            SysUserEntity userEntity = sysUserService.findByid(new SysUserEntity(), Integer.parseInt(id));
+            mv.addObject("user", userEntity);
+        }else{
+            mv.addObject("user", new SysUserEntity());
         }
         mv.setViewName("/system/user/add");
         return mv;
     }
 
-    @ResponseBody
     @RequestMapping("doSave")
-    public String doSave(@ModelAttribute SysUserEntity userEntity){
-
+    public ModelAndView doSave(@ModelAttribute SysUserEntity userEntity){
+        ModelAndView mv = new ModelAndView();
         if(userEntity!=null){
+            boolean isOk = false;
+            if(userEntity.getId()!=null){
+                userEntity.setPassword(MD5Util.MD5Encode("1"));
+                isOk = sysUserService.update(userEntity);
+            }else{
+                isOk = sysUserService.save(userEntity);
+            }
+            mv.addObject("user",userEntity);
+            mv.addObject(JsonConsts.Message,isOk);
         }
-
-        return "";
+        mv.setViewName("/system/user/add");
+        return mv;
     }
     @ResponseBody
     @RequestMapping("delete")

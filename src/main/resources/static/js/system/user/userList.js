@@ -59,7 +59,8 @@ layui.config({
                     $that.on('click', function () {
                         switch (action) {
                             case 'edit':
-                                layerTips.msg(action + ":" + id);
+                                getEditWin("修改用户信息",id);
+                                //layerTips.msg(action + ":" + id);
                                 break;
                             case 'del': //删除
                                 var name = $that.parent('td').siblings('td[data-field=name]').text();
@@ -84,20 +85,24 @@ layui.config({
     });
 
     $('#addUser').on("click",function(){
+        getEditWin("新增用户信息",'');
+    });
+    
+    function  getEditWin(title,id) {
         layer.open({
-            title: "新增用户",
+            title: title,
             type: 2,
             area: ['70%', '80%'],
             fix: false, //不固定
             maxmin: true,
-            content:  'toEdit',
+            content:  'toEdit?id='+id,
             success:function(layero,index){
 
             },
             end:function(){    //子页面销毁时回调的方法
                 var handle = $("#handle").val();
                 if( handle == 1){
-                    layer.msg('修改成功', {
+                    layer.msg('保存成功', {
                         icon: 1,
                         time: 1500 //2秒关闭（如果不配置，默认是3秒）
                     }, function(){
@@ -108,7 +113,7 @@ layui.config({
                 }
             }
         });
-    });
+    };
 
 
     $(window).on('resize', function (e) {

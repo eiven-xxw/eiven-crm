@@ -91,6 +91,10 @@ public final class DateConverUtil extends DateUtils {
 		}	
 		return date;
 	}
+
+	public static int currentTimeStamp() {
+		return Integer.parseInt(String.valueOf(System.currentTimeMillis()/1000));
+	}
 	/**
 	 * 日期时间格式 转换成  参数设定或系统特定格式的字符串 
 	 * @param type 传入的转换成的日期格式   , DateConverUtil.TimeType中有一部分日期时间格式

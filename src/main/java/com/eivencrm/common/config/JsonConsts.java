@@ -50,5 +50,5 @@ public final class JsonConsts {
 	//返回通知代码
 	public static String Code = "code";
 	public static String ErrMsg = "errMsg";//
-	public static String Message = "message";
+	public static String Message = "msg";
 }

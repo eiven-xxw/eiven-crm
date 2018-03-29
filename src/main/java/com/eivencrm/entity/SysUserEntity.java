@@ -6,8 +6,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "sys_user", schema = "eivencrm", catalog = "")
-public class SysUserEntity {
-    private Integer id;
+public class SysUserEntity extends BaseEntity{
     private Integer companyId;
     private Integer departmentId;
     private String loginName;
@@ -25,22 +24,10 @@ public class SysUserEntity {
     private String photo;
     private String loginIp;
     private Timestamp loginTime;
-    private Integer createId;
-    private Timestamp createTime;
-    private Integer updateId;
-    private Timestamp updateTime;
     private String remarks;
     private Integer isUse;
 
-    @Id
-    @Column(name = "id")
-    public Integer getId() {
-        return id;
-    }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     @Basic
     @Column(name = "company_id")
@@ -212,45 +199,9 @@ public class SysUserEntity {
         this.loginTime = loginTime;
     }
 
-    @Basic
-    @Column(name = "create_id")
-    public Integer getCreateId() {
-        return createId;
-    }
 
-    public void setCreateId(Integer createId) {
-        this.createId = createId;
-    }
 
-    @Basic
-    @Column(name = "create_time")
-    public Timestamp getCreateTime() {
-        return createTime;
-    }
 
-    public void setCreateTime(Timestamp createTime) {
-        this.createTime = createTime;
-    }
-
-    @Basic
-    @Column(name = "update_id")
-    public Integer getUpdateId() {
-        return updateId;
-    }
-
-    public void setUpdateId(Integer updateId) {
-        this.updateId = updateId;
-    }
-
-    @Basic
-    @Column(name = "update_time")
-    public Timestamp getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Timestamp updateTime) {
-        this.updateTime = updateTime;
-    }
 
     @Basic
     @Column(name = "remarks")
@@ -277,7 +228,7 @@ public class SysUserEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SysUserEntity that = (SysUserEntity) o;
-        return Objects.equals(id, that.id) &&
+        return
                 Objects.equals(companyId, that.companyId) &&
                 Objects.equals(departmentId, that.departmentId) &&
                 Objects.equals(loginName, that.loginName) &&
@@ -295,10 +246,6 @@ public class SysUserEntity {
                 Objects.equals(photo, that.photo) &&
                 Objects.equals(loginIp, that.loginIp) &&
                 Objects.equals(loginTime, that.loginTime) &&
-                Objects.equals(createId, that.createId) &&
-                Objects.equals(createTime, that.createTime) &&
-                Objects.equals(updateId, that.updateId) &&
-                Objects.equals(updateTime, that.updateTime) &&
                 Objects.equals(remarks, that.remarks) &&
                 Objects.equals(isUse, that.isUse);
     }
@@ -306,6 +253,6 @@ public class SysUserEntity {
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, companyId, departmentId, loginName, password, no, name, age, sex, birthday, identityCard, email, phone, mobile, userType, photo, loginIp, loginTime, createId, createTime, updateId, updateTime, remarks, isUse);
+        return Objects.hash( companyId, departmentId, loginName, password, no, name, age, sex, birthday, identityCard, email, phone, mobile, userType, photo, loginIp, loginTime,  remarks, isUse);
     }
 }

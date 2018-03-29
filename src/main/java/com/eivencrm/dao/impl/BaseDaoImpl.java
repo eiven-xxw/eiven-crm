@@ -1,6 +1,9 @@
 package com.eivencrm.dao.impl;
 
+import com.eivencrm.common.helper.Currents;
+import com.eivencrm.common.util.DateConverUtil;
 import com.eivencrm.dao.BaseDao;
+import com.eivencrm.entity.BaseEntity;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,6 +12,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.*;
 
 @Repository
@@ -31,10 +35,13 @@ public abstract class BaseDaoImpl<T,ID extends Serializable> implements BaseDao<
     public boolean save(T entity){
         boolean flag=false;
         try {
+            if (entity instanceof BaseEntity) {
+                ((BaseEntity)entity).setCreateId(Currents.getUserId());
+                ((BaseEntity)entity).setCreateTime(new Timestamp(System.currentTimeMillis()));
+            }
             entityManager.persist(entity);
             flag=true;
         }catch (Exception e){
-            System.out.println("---------------保存出错---------------");
             throw e;
         }
         return flag;
@@ -111,7 +118,7 @@ public abstract class BaseDaoImpl<T,ID extends Serializable> implements BaseDao<
             list= query.getResultList();
             entityManager.close();
         }catch (Exception e){
-            System.out.println("------------分页错误---------------");
+            e.printStackTrace();
         }
 
         return list;
@@ -121,10 +128,14 @@ public abstract class BaseDaoImpl<T,ID extends Serializable> implements BaseDao<
     public boolean update(T entity) {
         boolean flag = false;
         try {
+            if (entity instanceof BaseEntity) {
+                ((BaseEntity)entity).setUpdateId(Currents.getUserId());
+                ((BaseEntity)entity).setUpdateTime(new Timestamp(System.currentTimeMillis()));
+            }
             entityManager.merge(entity);
             flag = true;
         } catch (Exception e) {
-            System.out.println("---------------更新出错---------------");
+            e.printStackTrace();
         }
         return flag;
     }

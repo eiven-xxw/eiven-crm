@@ -6,8 +6,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "sys_menu", schema = "eivencrm", catalog = "")
-public class SysMenuEntity {
-    private Integer id;
+public class SysMenuEntity extends BaseEntity{
     private Integer parentId;
     private String name;
     private String url;
@@ -18,20 +17,8 @@ public class SysMenuEntity {
     private String remark;
     private String type;
     private Boolean isopen;
-    private Integer updateId;
-    private Timestamp updateTime;
-    private Integer createId;
-    private Timestamp createTime;
 
-    @Id
-    @Column(name = "id", nullable = false)
-    public Integer getId() {
-        return id;
-    }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     @Basic
     @Column(name = "parent_id", nullable = true)
@@ -133,52 +120,16 @@ public class SysMenuEntity {
         this.isopen = isopen;
     }
 
-    @Basic
-    @Column(name = "update_id", nullable = true)
-    public Integer getUpdateId() {
-        return updateId;
-    }
 
-    public void setUpdateId(Integer updateId) {
-        this.updateId = updateId;
-    }
 
-    @Basic
-    @Column(name = "update_time", nullable = true)
-    public Timestamp getUpdateTime() {
-        return updateTime;
-    }
 
-    public void setUpdateTime(Timestamp updateTime) {
-        this.updateTime = updateTime;
-    }
-
-    @Basic
-    @Column(name = "create_id", nullable = true)
-    public Integer getCreateId() {
-        return createId;
-    }
-
-    public void setCreateId(Integer createId) {
-        this.createId = createId;
-    }
-
-    @Basic
-    @Column(name = "create_time", nullable = true)
-    public Timestamp getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Timestamp createTime) {
-        this.createTime = createTime;
-    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SysMenuEntity that = (SysMenuEntity) o;
-        return Objects.equals(id, that.id) &&
+        return
                 Objects.equals(parentId, that.parentId) &&
                 Objects.equals(name, that.name) &&
                 Objects.equals(url, that.url) &&
@@ -188,16 +139,12 @@ public class SysMenuEntity {
                 Objects.equals(permission, that.permission) &&
                 Objects.equals(remark, that.remark) &&
                 Objects.equals(type, that.type) &&
-                Objects.equals(isopen, that.isopen) &&
-                Objects.equals(updateId, that.updateId) &&
-                Objects.equals(updateTime, that.updateTime) &&
-                Objects.equals(createId, that.createId) &&
-                Objects.equals(createTime, that.createTime);
+                Objects.equals(isopen, that.isopen);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, parentId, name, url, icon, sort, isuse, permission, remark, type, isopen, updateId, updateTime, createId, createTime);
+        return Objects.hash( parentId, name, url, icon, sort, isuse, permission, remark, type, isopen);
     }
 }
