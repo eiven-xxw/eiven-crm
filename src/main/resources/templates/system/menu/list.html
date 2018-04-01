@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+
+	<head>
+		<meta charset="UTF-8"/>
+		<title>用户列表</title>
+
+
+		<meta name="renderer" content="webkit"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+		<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+		<meta name="apple-mobile-web-app-capable" content="yes"/>
+		<meta name="format-detection" content="telephone=no"/>
+
+		<link rel="stylesheet" th:href="@{/common/plugins/layui/css/layui.css}" media="all" />
+		<link rel="stylesheet" th:href="@{/common/plugins/font-awesome/css/font-awesome.min.css}"/>
+		<link rel="stylesheet" th:href="@{/common/css/btable.css}" />
+
+
+	</head>
+
+	<body style=" background-color: gainsboro;">
+
+	<div style="margin:0px; background-color: white; margin:0 10px;">
+		<blockquote class="layui-elem-quote">
+			<button type="button" class="layui-btn layui-btn-small" id="addUser"><i class="fa fa-plus" aria-hidden="true"></i> 添加</button>
+			<form class="layui-form" style="float:right;">
+				<div class="layui-form-item" style="margin:0;">
+					<label class="layui-form-label">名称</label>
+					<div class="layui-input-inline">
+						<input type="text" name="name" placeholder="支持模糊查询.." autocomplete="off" class="layui-input"/>
+					</div>
+					<div class="layui-form-mid layui-word-aux" style="padding:0;">
+						<button lay-filter="search" class="layui-btn" lay-submit="lay-submit"><i class="fa fa-search" aria-hidden="true"></i> 查询</button>
+					</div>
+				</div>
+			</form>
+		</blockquote>
+		<div id="content" style="width: 100%;height: 533px;"></div>
+	</div>
+
+	<script type="text/javascript" th:src="@{/common/plugins/layui/layui.js}"></script>
+	<script type="text/javascript" th:src="@{/js/system/user/userList.js}"></script>
+
+	</body>
+
+
+
+
+
+</html>
