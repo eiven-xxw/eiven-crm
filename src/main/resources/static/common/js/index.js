@@ -63,7 +63,7 @@ layui.config({
         cached: true,
        // data: navs
 		cached:false,
-		url: 'initMenu'
+		url: 'menu/initMenu'
     });
     //渲染navbar
     navbar.render();

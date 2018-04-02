@@ -1,5 +1,7 @@
 package com.eivencrm.entity;
 
+import com.eivencrm.common.util.excel.annotation.ExcelField;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
@@ -8,7 +10,7 @@ import java.util.Objects;
 @Table(name = "sys_menu", schema = "eivencrm", catalog = "")
 public class SysMenuEntity extends BaseEntity{
     private Integer parentId;
-    private String name;
+    private String name;//名称
     private String url;
     private String icon;
     private Integer sort;

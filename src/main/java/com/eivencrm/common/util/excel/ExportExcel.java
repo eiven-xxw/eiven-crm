@@ -7,6 +7,7 @@ import com.eivencrm.common.util.Encodes;
 import com.eivencrm.common.util.Reflections;
 import com.eivencrm.common.util.StringUtils;
 import com.eivencrm.common.util.excel.annotation.ExcelField;
+import com.eivencrm.entity.SysUserEntity;
 import com.google.common.collect.Lists;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
@@ -435,7 +436,7 @@ public class ExportExcel {
 	public static void main(String[] args) throws Throwable {
 
 		List<String> headerList = Lists.newArrayList();
-		for (int i = 1; i <= 10; i++) {
+		for (int i = 1; i <= 2; i++) {
 			headerList.add("表头"+i);
 		}
 
@@ -445,12 +446,12 @@ public class ExportExcel {
 		}
 
 		List<List<String>> dataList = Lists.newArrayList();
-		for (int i = 1; i <=1000000; i++) {
+		for (int i = 1; i <=1000; i++) {
 			dataList.add(dataRowList);
 		}
 
-		ExportExcel ee = new ExportExcel("表格标题", headerList);
-
+		//ExportExcel ee = new ExportExcel("表格标题", headerList);
+		ExportExcel ee = new ExportExcel("表格标题", SysUserEntity.class,2,2,3);
 		for (int i = 0; i < dataList.size(); i++) {
 			Row row = ee.addRow();
 			for (int j = 0; j < dataList.get(i).size(); j++) {

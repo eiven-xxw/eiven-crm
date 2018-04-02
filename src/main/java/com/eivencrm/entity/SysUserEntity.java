@@ -1,5 +1,7 @@
 package com.eivencrm.entity;
 
+import com.eivencrm.common.util.excel.annotation.ExcelField;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
@@ -81,6 +83,7 @@ public class SysUserEntity extends BaseEntity{
 
     @Basic
     @Column(name = "name")
+    @ExcelField(title="用户名称", align=2, sort=1,groups=1)
     public String getName() {
         return name;
     }
@@ -91,6 +94,7 @@ public class SysUserEntity extends BaseEntity{
 
     @Basic
     @Column(name = "age")
+    @ExcelField(title="年龄", align=2, sort=2,groups=2)
     public Integer getAge() {
         return age;
     }
@@ -111,6 +115,7 @@ public class SysUserEntity extends BaseEntity{
 
     @Basic
     @Column(name = "birthday")
+    @ExcelField(title="生日", align=2, sort=1,groups=3)
     public Timestamp getBirthday() {
         return birthday;
     }

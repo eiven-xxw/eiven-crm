@@ -10,10 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
 @Controller
+@RequestMapping("menu")
 public class MenuController extends BaseController{
 	  /**
      * 日志（slf4j->logback）
@@ -43,7 +45,7 @@ public class MenuController extends BaseController{
                 "\t\"children\": [{\n" +
                 "\t\t\"title\": \"菜单\",\n" +
                 "\t\t\"icon\": \"&#xe641;\",\n" +
-                "\t\t\"href\": \"index\"\n" +
+                "\t\t\"href\": \"menu/menuList\"\n" +
                 "\t}, {\n" +
                 "\t\t\"title\": \"权限\",\n" +
                 "\t\t\"icon\": \"&#xe63c;\",\n" +
@@ -66,7 +68,15 @@ public class MenuController extends BaseController{
 		return menu;
     }
 
+    @RequestMapping("menuList")
+    public ModelAndView menuList(){
+        ModelAndView mv = new ModelAndView();
 
+
+        mv.setViewName("/system/menu/list");
+        return mv;
+
+    }
 
 
 }
