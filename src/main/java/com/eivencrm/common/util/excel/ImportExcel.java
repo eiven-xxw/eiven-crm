@@ -3,7 +3,6 @@
  */
 package com.eivencrm.common.util.excel;
 
-import com.eivencrm.common.util.DictUtils;
 import com.eivencrm.common.util.Reflections;
 import com.eivencrm.common.util.excel.annotation.ExcelField;
 import com.google.common.collect.Lists;
@@ -278,10 +277,10 @@ public class ImportExcel {
 				if (val != null){
 					ExcelField ef = (ExcelField)os[0];
 					// If is dict type, get dict value
-					if (StringUtils.isNotBlank(ef.dictType())){
+					/*if (StringUtils.isNotBlank(ef.dictType())){
 						val = DictUtils.getDictValue(val.toString(), ef.dictType(), "");
 						//log.debug("Dictionary type value: ["+i+","+colunm+"] " + val);
-					}
+					}*/
 					// Get param type and type cast
 					Class<?> valType = Class.class;
 					if (os[1] instanceof Field){
@@ -344,22 +343,22 @@ public class ImportExcel {
 		return dataList;
 	}
 
-//	/**
-//	 * 导入测试
-//	 */
-//	public static void main(String[] args) throws Throwable {
-//		
-//		ImportExcel ei = new ImportExcel("target/export.xlsx", 1);
-//		
-//		for (int i = ei.getDataRowNum(); i < ei.getLastDataRowNum(); i++) {
-//			Row row = ei.getRow(i);
-//			for (int j = 0; j < ei.getLastCellNum(); j++) {
-//				Object val = ei.getCellValue(row, j);
-//				System.out.print(val+", ");
-//			}
-//			System.out.print("\n");
-//		}
-//		
-//	}
+	/**
+	 * 导入测试
+	 */
+	public static void main(String[] args) throws Throwable {
+
+		ImportExcel ei = new ImportExcel("F:\\GGP\\GGP质检\\GGP质检录入数据表.xlsx", 1);
+
+		for (int i = ei.getDataRowNum(); i < ei.getLastDataRowNum(); i++) {
+			Row row = ei.getRow(i);
+			for (int j = 0; j < ei.getLastCellNum(); j++) {
+				Object val = ei.getCellValue(row, j);
+				System.out.print(val+"; ");
+			}
+			System.out.print("\n");
+		}
+
+	}
 
 }

@@ -18,8 +18,8 @@ import java.util.Stack;
  * 集合相关工具类，包括数组
  * </p>
  * 
- * @author hubin
- * @Date 2016-04-16
+ * @author eiven
+ * @Date 2018-04-16
  */
 public class CollectionUtil {
 
