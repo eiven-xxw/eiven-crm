@@ -5,6 +5,8 @@ package com.eivencrm.common.util.excel;
 
 import com.eivencrm.common.util.Reflections;
 import com.eivencrm.common.util.excel.annotation.ExcelField;
+import com.eivencrm.entity.SysUserEntity;
+import com.eivencrm.service.SysUserService;
 import com.google.common.collect.Lists;
 import com.sun.media.sound.InvalidFormatException;
 import org.apache.commons.lang3.StringUtils;
@@ -13,6 +15,7 @@ import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -21,10 +24,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * 导入Excel文件（支持“XLS”和“XLSX”格式）
@@ -344,18 +344,41 @@ public class ImportExcel {
 	}
 
 	/**
+	 * 获取行数据
+	 * @param rowIndex 行号
+	 * */
+	public List<Object> getRowContent(int rowIndex){
+		List<Object> list = new ArrayList<Object>();
+		Row row = this.getRow(rowIndex);
+		for (int i = 0; i < this.getLastCellNum(); i++) {
+			Object val = this.getCellValue(row, i);
+			list.add(val);
+		}
+		return  list;
+	}
+
+
+	/**
 	 * 导入测试
 	 */
 	public static void main(String[] args) throws Throwable {
 
-		ImportExcel ei = new ImportExcel("F:\\GGP\\GGP质检\\GGP质检录入数据表.xlsx", 1);
-
-		for (int i = ei.getDataRowNum(); i < ei.getLastDataRowNum(); i++) {
+		ImportExcel ei = new ImportExcel("F:\\GGP\\export.xlsx", 1);
+		//ei.getLastDataRowNum()
+		for (int i = ei.getDataRowNum(); i < 12; i++) {
 			Row row = ei.getRow(i);
+			SysUserEntity sysUserEntity = new SysUserEntity();
+
+			sysUserEntity.setName("Test");
+
 			for (int j = 0; j < ei.getLastCellNum(); j++) {
 				Object val = ei.getCellValue(row, j);
+				sysUserEntity.setLoginName(ei.getCellValue(row, 0).toString());
+				sysUserEntity.setPassword(ei.getCellValue(row, 1).toString());
+
 				System.out.print(val+"; ");
 			}
+
 			System.out.print("\n");
 		}
 

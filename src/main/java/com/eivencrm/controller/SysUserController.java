@@ -7,8 +7,10 @@ import com.eivencrm.common.util.JsonContext;
 import com.eivencrm.common.util.JsonResult;
 import com.eivencrm.common.util.MD5Util;
 import com.eivencrm.common.util.StringUtils;
+import com.eivencrm.common.util.excel.ImportExcel;
 import com.eivencrm.entity.SysUserEntity;
 import com.eivencrm.service.SysUserService;
+import org.apache.poi.ss.usermodel.Row;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,6 +65,8 @@ public class SysUserController extends BaseController{
         List<SysUserEntity> userList  = sysUserService.findByMoreFiledPages(
                 this.getHqlTableName(SysUserEntity.class),map,pageIndex,pageSize);
         Object count = sysUserService.findCount(this.getHqlTableName(SysUserEntity.class),map);
+
+
         return JsonResult.putSuccess(userList,Integer.parseInt(count.toString()));
     }
 
@@ -101,6 +105,38 @@ public class SysUserController extends BaseController{
     @ResponseBody
     @RequestMapping("delete")
     public String delete(){
+
         return "";
     }
+    @ResponseBody
+    @RequestMapping("getExcelData")
+    public String getExcelData() {
+            try {
+                ImportExcel ei = new ImportExcel("F:\\GGP\\export.xlsx", 1);
+                //ei.getLastDataRowNum()
+                List<Object> aaa = ei.getRowContent(4);
+                for (int i = ei.getDataRowNum(); i < 12; i++) {
+                    Row row = ei.getRow(i);
+                    SysUserEntity sysUserEntity = new SysUserEntity();
+
+                    sysUserEntity.setName("Test");
+
+                    for (int j = 0; j < ei.getLastCellNum(); j++) {
+                        Object val = ei.getCellValue(row, j);
+                        sysUserEntity.setLoginName(ei.getCellValue(row, 0).toString());
+                        sysUserEntity.setPassword(ei.getCellValue(row, 1).toString());
+
+                        System.out.print(val + "; ");
+                    }
+                    sysUserService.save(sysUserEntity);
+                    System.out.print("\n");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return "";
+    }
+
+
+
 }
